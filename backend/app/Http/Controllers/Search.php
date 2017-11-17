@@ -489,11 +489,23 @@ class Search extends Controller {
         $inputs = Input::all();
         
         $search_text = $inputs['search_text'];
-        $search_column = $inputs['search_column'];
-        $application = MdlApplication::where($search_column, 'LIKE', "%$search_text%")->take(2000)->orderBy('borrower_name', 'ASC')->get();
+		$search_column = $inputs['search_column'];
+		
+		// Comelec
+		if($search_column == 'comelec') {
+			$comelec = MdlComelec::where('voters_name', 'LIKE', "%$search_text%")->take(2000)->orderBy('voters_name', 'ASC')->get();
+			
+			$inputs['total'] = count($comelec);
+			$inputs['comelec'] = $comelec;
+			$inputs['isComelec'] = true;
+		} else {
+			$application = MdlApplication::where($search_column, 'LIKE', "%$search_text%")->take(2000)->orderBy('borrower_name', 'ASC')->get();
+			
+			$inputs['total'] = count($application);
+			$inputs['application'] = $application;
+			$inputs['isComelec'] = false;
+		}
         
-        $inputs['total'] = count($application);
-        $inputs['application'] = $application;
         echo json_encode($inputs);
     }
     
@@ -591,13 +603,21 @@ class Search extends Controller {
 
     public function viewAppDetails() {
         $output = array();
-        $inputs = Input::all();
-        if(!empty($inputs['app_id'])) {
-            $output['app_id'] = $inputs['app_id'];
-            $model = new MdlApplication();
-            $check = $model->where("id", $inputs['app_id'])->get();
-                        
-            $output['records'] = $check;
+		$inputs = Input::all();
+				
+        if(!empty($inputs['app_id']) && !empty($inputs['data_type'])) {
+			$output['app_id'] = $inputs['app_id'];
+
+			if($inputs['data_type'] == 'comelec') {
+				$check = MdlComelec::where("id", $inputs['app_id'])->get();
+				$output['records'] = $check;
+				
+			} else {
+				$model = new MdlApplication();
+				$check = $model->where("id", $inputs['app_id'])->get();
+
+				$output['records'] = $check;
+			}            
         }
         
         $output['_token'] = csrf_token();        
