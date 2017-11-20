@@ -68,7 +68,169 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">Account Details</h4>
             </div>
-            <div class="modal-body"></div>
+            <div class="modal-body">
+            <div class="panel-group" id="accordion">
+                    <!-- Borrower -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Form #1 Borrower</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">                                        
+                                <div class="form-group">
+                                    <label>Branch</label>
+                                    <input type="text" id="branch" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>PNNO</label>
+                                    <input type="text" id="pnno" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <input type="text" id="type" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Borrower's Name</label>
+                                    <input type="text" id="borrower_name" placeholder="Lastname, Firstname Middlename" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Borrower Address</label>
+                                    <textarea id="borrower_address" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Character URL</label>
+                                    <input type="text" id="character_url" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Contact</label>
+                                    <input type="text" id="tel_no" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Birthday</label>
+                                    <input type="text" id="bday" class="datepicker form-control" placeholder="YYYY-MM-DD" readonly="true" style="cursor: pointer;background-color: rgba(255, 255, 255, 0.15);"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Spouse</label>
+                                    <input type="text" id="spouse" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>TIN</label>
+                                    <input type="text" id="tin" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>SSS</label>
+                                    <input type="text" id="sss" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="text" id="email_address" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Business Name</label>
+                                    <input type="text" id="business_name" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Business Contact</label>
+                                    <input type="text" id="business_contact" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Business Address</label>
+                                    <textarea id="business_address" class="form-control"></textarea>
+                                </div>                                        
+                            </div> <!-- /panel-body -->                                
+                        </div> <!-- /collapseOne -->
+                    </div>
+                    <!-- /Borrower -->
+                    
+                    <!-- Co-Maker -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Form #2 Co-Maker</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>Co-Maker</label>
+                                    <input type="text" id="comaker" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Co-Maker Contact</label>
+                                    <input type="text" id="comaker_contact" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Co-Maker Social Media</label>
+                                    <input type="text" id="comaker_social_media" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Co-Maker Address</label>
+                                    <textarea id="comaker_address" class="form-control"></textarea>
+                                </div>
+                            </div> <!-- /panel-body -->                                
+                        </div> <!-- /collapseTwo -->
+                    </div>
+                    <!-- /Co-Maker -->
+                    
+                    <!-- Co-Borrower -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Form #3 Co-Borrower</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>Co-Borrower</label>
+                                    <input type="text" id="co_borrower" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Co-Borrower Contact</label>
+                                    <input type="text" id="co_borrower_contact" class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Co-Borrower Address</label>
+                                    <textarea id="co_borrower_address" class="form-control"></textarea>
+                                </div>
+                            </div> <!-- /panel-body -->                                
+                        </div> <!-- /collapseTwo -->
+                    </div>
+                    <!-- /Co-Borrower -->
+                    
+                    <!-- Character Reference -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Form #4 Character Reference</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group" id="character_reference">
+                                    <label>Character Reference</label>                                    
+                                </div>
+                                <div class="form-group" id="character_contact">
+                                    <label>Character Reference Contact</label>                                    
+                                </div>
+                                <div class="form-group" id="reference_address">
+                                    <label>Character Reference Address</label>
+                                </div>                                
+                                <div class="form-group" id="relation">
+                                    <label>Character Reference Relation</label>                                    
+                                </div>
+                                <div class="form-group">
+                                    <label>Character Reference URL</label>
+                                    <input type="text" id="reference_url" class="form-control"/>
+                                </div>
+                            </div> <!-- /panel-body -->                                
+                        </div> <!-- /collapseFour -->
+                    </div>
+                    <!-- /Character Reference -->
+                </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                
             </div>
@@ -125,7 +287,7 @@
                     	_div += "<tr><td style='width: 60px;'>"+ lop +".</td>";
                         _div += "<td>"+ application[x]['borrower_name'] +"</td>";
                         _div += "<td>"+ application[x]['relation_found'] +"</td>";
-                        _div += "<td><button class='btn btn-success btn-xs' app_id='"+ application[x]['id'] +"' style='cursor: pointer;'><i class='fa fa-info-circle'></i> View</button> &nbsp;| ";                        
+                        _div += "<td><button class='btn btn-success btn-xs' app_id='"+ application[x]['id'] +"' data-type='"+ result.data_type +"' style='cursor: pointer;'><i class='fa fa-info-circle'></i> View</button> &nbsp;| ";                        
                         _div += "<a href='"+ base_url +'/search/comelink/'+ application[x]['id'] +"' class='btn btn-primary btn-xs' target='_blank' style='cursor: pointer;'><i class='fa fa-folder-open-o'></i> Comelec</a></td>";
                         _div += "</tr>";
                         lop++; 
@@ -143,9 +305,10 @@
                 // View Moddal
                 $("table > tbody > tr > td > button").on("click", function(){
                     var app_id = $(this).attr("app_id");
+                    var data_type = $(this).attr("data-type");
                     console.log("APP: "+ app_id);    
                     // Call Ajax
-                    callAjax(app_id);
+                    callAjax(app_id, data_type);
                 });
             },
             error: function(err) {
@@ -154,10 +317,10 @@
             }
         });
     }
-    function callAjax(app_id) {
+    function callAjax(app_id, data_type) {
         var base_url = $("base").attr("href");
         var _token = $("input[name='_token']").val();
-        var _data = {"app_id":app_id,"_token":_token};
+        var _data = {"app_id":app_id,"_token":_token,"data_type":data_type};
         $.ajax({
             type: "POST",
             url: base_url +"/search/viewAppDetails",
@@ -171,7 +334,57 @@
                 if(result) {
                     var _table = "<table><tbody>";
                     var records = result.records;
-                    for(var x=0; x < records.length; x++) {                        
+                    for(var x=0; x < records.length; x++) {  
+
+                        $("#branch").val( records[x]['branch'] );
+                        $("#pnno").val( records[x]['pnno'] );
+                        $("#type").val( records[x]['type'] );
+                        $("#borrower_name").val( records[x]['borrower_name'] );
+                        $("#borrower_address").val( records[x]['borrower_address'] );
+                        $("#character_url").val( records[x]['character_url'] );
+                        $("#tel_no").val( records[x]['tel_no'] );
+                        $("#bday").val( records[x]['bday'] );
+                        $("#spouse").val( records[x]['spouse'] );
+                        $("#tin").val( records[x]['tin'] );            
+                        $("#sss").val( records[x]['sss'] );
+                        $("#email_address").val( records[x]['email_address'] );
+                        $("#business_name").val( records[x]['business_name'] );
+                        $("#business_contact").val( records[x]['business_contact'] );
+                        $("#business_address").val( records[x]['business_address'] );
+                        $("#comaker").val( records[x]['comaker'] );
+                        $("#comaker_contact").val( records[x]['comaker_contact'] );
+                        $("#comaker_social_media").val( records[x]['comaker_social_media'] );
+                        $("#comaker_address").val( records[x]['comaker_address'] );
+                        $("#co_borrower").val( records[x]['co_borrower'] );
+                        $("#co_borrower_contact").val( records[x]['co_borrower_contact'] );
+                        $("#co_borrower_address").val( records[x]['co_borrower_address'] );
+                        $("#reference_url").val( records[x]['reference_url'] );
+
+                        $("#character_reference p").remove();
+                        var refChar = records[x]['character_reference'];
+                        for(var refChKey in refChar) {                
+                            $("#character_reference").append("<p>"+ (parseInt(refChKey) + 1) +". "+ refChar[refChKey] +"</p>");
+                        }
+
+                        $("#character_contact p").remove();
+                        var refContact = records[x]['character_contact'];
+                        for(var refCntKey in refContact) {                
+                            $("#character_contact").append("<p>"+ (parseInt(refCntKey) + 1) +". "+ refContact[refCntKey] +"</p>");
+                        }
+
+                        $("#reference_address p").remove();
+                        var refAddress = records[x]['reference_address'];
+                        for(var refAdKey in refAddress) {                
+                            $("#reference_address").append("<p>"+ (parseInt(refAdKey) + 1) +". "+ refAddress[refAdKey] +"</p>");
+                        }
+
+                        $("#relation p").remove();
+                        var relation = records[x]['relation'];
+                        for(var relKey in relation) {                
+                            $("#relation").append("<p>"+ (parseInt(relKey) + 1) +". "+ relation[relKey] +"</p>");
+                        }
+
+                        /*
                         _table += "<tr><td><b>Branch:</b><td><td>"+ records[x]['branch'] +"</td></tr>";
                         _table += "<tr><td><b>PNNO:</b><td><td>"+ records[x]['pnno'] +"</td></tr>";
                         _table += "<tr><td><b>Type:</b><td><td>"+ records[x]['type'] +"</td></tr>";
@@ -199,9 +412,10 @@
                         _table += "<tr><td><b>Character Contact:</b><td><td>"+ records[x]['character_contact'] +"</td></tr>";
                         _table += "<tr><td><b>Character Address:</b><td><td>"+ records[x]['reference_address'] +"</td></tr>";
 						_table += "<tr><td><b>Relation:</b><td><td>"+ records[x]['relation'] +"</td></tr>";                        
+                        */
                     }
-                    _table += "</tbody></table>";
-                    $(".modal-body").html(_table);
+                    //_table += "</tbody></table>";
+                    //$(".modal-body").html(_table);
                 }                
             },
             error: function(){
@@ -210,7 +424,7 @@
         });
     }
     function showRecModal() {
-        $(".modal-body").html("");
+        ///$(".modal-body").html("");
         $("#myModal").modal();
     }
 </script>

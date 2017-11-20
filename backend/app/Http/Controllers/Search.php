@@ -596,7 +596,8 @@ class Search extends Controller {
     	$output['total'] = count($results);
     	$output['_token'] = csrf_token();
     	$output['arrRecordId'] = $arrRecordId;
-    	
+		$output['data_type'] = 'application';
+		
     	echo json_encode($output);
     }
     
@@ -616,11 +617,24 @@ class Search extends Controller {
 				$model = new MdlApplication();
 				$check = $model->where("id", $inputs['app_id'])->get();
 
-				$output['records'] = $check;
+				if(!empty($check)) {
+					foreach($check as $key => $value) {
+						
+						$arr = array('reference_address','character_reference','character_contact','relation');
+						foreach($arr as $arrVal) {
+							if(isset($value[$arrVal])) {
+								$str1 = explode("/", $value[$arrVal]);
+								$check[$key][$arrVal] = $str1;	
+							}
+						}
+					}
+				}
+				$output['records'] = $check;				
 			}            
         }
         
-        $output['_token'] = csrf_token();        
+		$output['_token'] = csrf_token();
+		$output['data_type'] = $inputs['data_type'];
         echo json_encode($output);
     }
 
