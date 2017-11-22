@@ -41,7 +41,13 @@
                                         <select name="select_upload_file" id="select_upload_file" class="form-control">
                                             <option value="borrower">Borrower's</option>
                                             <option value="comelec">Comelec</option>
+                                            <option value="olddata">Old Data</option>
                                         </select>
+                                    </div>
+                                    <div id="cols_index" class="form-group" style="display: none;">
+                                        <label>Columns Index</label><br>
+                                        <span style="font-size: 8pt;">Note: Index column start with Zero "0" and 1, 2, 3, 4 etc, put "X" to Skip</span>
+                                        <input type="text" name="column_index" class="form-control" placeholder="Ex: [image_path] = 0,1,2,X,4,5,6,X,8,9 up to 29">
                                     </div>
                                     <div class="form-group">
                                         <label>File input</label>
@@ -90,6 +96,7 @@
                 }
                 _data.append("_token", $("input[name='_token']").val());
                 _data.append("select_upload_file", $("select[name='select_upload_file']").val());
+                _data.append("column_index", $("input[name='column_index']").val());
                 
                 $.ajax({
                     url:"<?php echo url().'/upload' ?>",
@@ -128,6 +135,15 @@
                 resetForm();
             }
         });
+
+        // Select
+        $("#select_upload_file").change(function() {
+            if( $(this).val() == 'olddata') {
+                $("#cols_index").show();
+            } else {
+                $("#cols_index").hide();
+            }
+        });
     });
     
     function resetForm() {
@@ -135,6 +151,7 @@
         $("#submit_btn").removeAttr('disabled');
         $("#myfile").removeAttr('disabled');
         $("#select_upload_file").removeAttr('disabled');
+        $("#cols_index").hide();
     }
 </script>
 @endsection

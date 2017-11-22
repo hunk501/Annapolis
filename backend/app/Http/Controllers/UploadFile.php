@@ -37,7 +37,7 @@ class UploadFile extends Controller {
         }
         dd($results);
         */
-        
+
         return view("account.upload");
     }
 
@@ -59,7 +59,7 @@ class UploadFile extends Controller {
         
         $msg = array();
         $inputs = Input::all();
-        
+                
         if(isset($inputs['myfiles'])) {
             if(Input::file("myfiles")->isValid()) {
                 $msg['isValid'] = true;
@@ -76,12 +76,16 @@ class UploadFile extends Controller {
                     $msg['select_upload_file'] = 'borrower';
                     $res = $this->readExcelFile($name, 'borrower');
                     $msg = array_merge($msg, $res);
-                } else {
+                } else if(isset($inputs['select_upload_file']) && $inputs['select_upload_file'] == 'comelec') {
                     $msg['select_upload_file'] = 'comelec';
                     $res = $this->readExcelFile($name, 'comelec');
                     $msg = array_merge($msg, $res);
-                }             
-                
+                } else {
+                    $msg['select_upload_file'] = 'olddata';
+                    $res = $this->readExcelFile($name, 'olddata', $inputs['column_index']);
+                    $msg = array_merge($msg, $res);
+                }
+                // X,1,2,3,4,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X
             } else {
                 $msg['isValid'] = false;
             }
@@ -132,14 +136,15 @@ class UploadFile extends Controller {
         //
     }
     
-    private function readExcelFile($filename, $type) {        
+    private function readExcelFile($filename, $type, $columnindex = null) {        
         $path = null;
         $msg = array();
         $tmpCols = array();
         $cols = array();
         $mdl = NULL;
+        $column_index = array();
                 
-        if($type == 'borrower') {
+        if($type == 'borrower' || $type == 'olddata') {
             $mdl = new MdlApplication();
             $cols = $mdl->getTableColumns();
             
@@ -151,6 +156,10 @@ class UploadFile extends Controller {
             }
             $cols = $tmpCols;
             
+            if($type == 'olddata') {
+                $column_index = explode(",", $columnindex);
+            }
+
         } else { // Comelec
             $mdl = new MdlComelec();
             $cols = $mdl->getTableColumns();
@@ -183,16 +192,34 @@ class UploadFile extends Controller {
         }
         
         $msg['data'] = $sheets;		       
-        
+
         $recSheets = array();
         foreach($sheets as $key => $sheet) {
             $index = 0;            
             foreach($sheet as $k => $shet) {
-                if($k >= 1) {                    
-                    for($x=0; $x < count($cols); $x++) {                          
-                        $recSheets[$key][$index][$cols[$x]] = $shet[$x];                        
+                if($k >= 1) {  
+                    
+                    // check type
+                    if($type == 'borrower' || $type == 'comelec') {
+                        for($x=0; $x < count($cols); $x++) {                          
+                            $recSheets[$key][$index][$cols[$x]] = $shet[$x];                        
+                        }
+                        $index++;
+
+                    } else {
+                        $ii = 0;
+                        foreach($column_index as $ciKey => $ciVal) {
+                            $ciValtrim = trim($ciVal);
+                            if(is_numeric($ciValtrim)) {
+                                $recSheets[$key][$index][$cols[$ii]] = $shet[$ciValtrim];
+                            } else {
+                                $recSheets[$key][$index][$cols[$ii]] = " ";
+                            }
+                            $ii++;
+                        }
+                        $index++;
                     }
-                    $index++;
+                    
                 }               
             }           
         }
@@ -205,7 +232,7 @@ class UploadFile extends Controller {
             foreach($recSheet as $key => $record) {
                 $application = NULL;
                 // Check upload type
-                if($type == 'borrower') {
+                if($type == 'borrower' || $type == 'olddata') {
                     $application = new MdlApplication($record);
                 } else {
                     $application = new MdlComelec($record);
